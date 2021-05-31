@@ -1,4 +1,3 @@
-const p5 = require('https://lukassinger.github.io/PD-Canvas/p5.min.js');
 const canvas = document.getElementById('canvas').getContext('2d');
 
 canvas.fillStyle = 'rgb(200, 0, 0)';
