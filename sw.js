@@ -6,7 +6,7 @@ self.addEventListener("install", function(event) {
     console.log("Installing web app");
     return caches.open("offline").then(function(cache) {
       console.log("caching index and important routes");
-      return cache.addAll(["/", "/components"]);
+      return cache.addAll(["/", "/components", "https://fonts.googleapis.com/css2?family=Sora:wght@500&display=swap"]);
     });
   };
   
