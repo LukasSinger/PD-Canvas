@@ -1,6 +1,5 @@
-import p5 from './p5.min.js';
+import p5 from 'https://lukassinger.github.io/PD-Canvas/p5.min.js';
 const canvas = document.getElementById('canvas').getContext('2d');
-throw 'It works'
 
 canvas.fillStyle = 'rgb(200, 0, 0)';
 canvas.fillRect(10, 10, 50, 50);
