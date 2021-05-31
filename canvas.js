@@ -28,5 +28,5 @@ function drawCanvas() {
 
 function resizeCanvas() {
     canvasElement.width = window.innerWidth;
-    canvasElement.height = window.innerHeight - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('height'));
+    canvasElement.height = window.innerHeight - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('height')) - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('padding-bottom'));
 };
