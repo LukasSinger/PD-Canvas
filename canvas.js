@@ -11,7 +11,7 @@ async function init() {
         resizeCanvas()
         drawCanvas()
         setInterval(function () {
-            heightCalc = window.innerHeight - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('height')) - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('padding-bottom'));
+            heightCalc = window.innerHeight - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('height')) - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('--bottom-inset'));
             resizeCanvas()
             drawCanvas()
         }, 300);
