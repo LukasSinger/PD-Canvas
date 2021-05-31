@@ -1,1 +1,2 @@
-PD-Canvas
+# Paint Deluxe
+https://lukassinger.github.io/paintdeluxe
