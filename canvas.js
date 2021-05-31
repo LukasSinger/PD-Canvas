@@ -1,6 +1,7 @@
 const bottomToolbar = document.getElementById('bottomToolbar');
 const canvasElement = document.getElementById('canvas');
 const canvas = canvasElement.getContext('2d');
+var heightCalc;
 init();
 
 async function init() {
@@ -10,7 +11,8 @@ async function init() {
         resizeCanvas()
         drawCanvas()
         setInterval(function () {
-            if (canvasElement.width != window.innerWidth || canvasElement.height != window.innerHeight - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('height'))) {
+            heightCalc = window.innerHeight - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('height')) - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('margin-bottom'));
+            if (canvasElement.width != window.innerWidth || canvasElement.height != heightCalc) {
                 resizeCanvas()
                 drawCanvas()
             }
@@ -28,5 +30,5 @@ function drawCanvas() {
 
 function resizeCanvas() {
     canvasElement.width = window.innerWidth;
-    canvasElement.height = window.innerHeight - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('height')) - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('padding-bottom'));
+    canvasElement.height = heightCalc;
 };
