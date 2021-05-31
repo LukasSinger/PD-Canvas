@@ -3,6 +3,7 @@
     <head>
         <title>Paint Deluxe</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="manifest" href="manifest.json">
         <meta charset="utf-8" />
     </head>
     <body id="body">
@@ -18,5 +19,13 @@
         
         <script src="components/p5.min.js"></script>
         <script src="canvas.js"></script>
+
+        <script>
+            if (!navigator.serviceWorker.controller) {
+                navigator.serviceWorker.register("/sw.js").then(function(reg) {
+                    console.log("Service worker has been registered for scope: " + reg.scope);
+                });
+            }
+        </script>
     </body>
 </html>
