@@ -12,10 +12,8 @@ async function init() {
         drawCanvas()
         setInterval(function () {
             heightCalc = window.innerHeight - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('height')) - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('padding-bottom'));
-            if (canvasElement.width != window.innerWidth || canvasElement.height != heightCalc) {
-                resizeCanvas()
-                drawCanvas()
-            }
+            resizeCanvas()
+            drawCanvas()
         }, 300);
     });
 };
