@@ -1,6 +1,6 @@
 @font-face {
     font-family: Sora;
-    src: "assets/Sora.ttf"
+    src: "assets/Sora.woff2" format('woff2');
 }
 
 body {
@@ -34,14 +34,14 @@ body {
     align-items: center;
     font-family: "Sora", "sans-serif";
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     color: #2d3139;
     background-color: transparent;
 }
 
 .icon {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     filter: brightness(0) saturate(100%) invert(15%) sepia(9%) saturate(1167%) hue-rotate(182deg) brightness(93%) contrast(85%);
 }
 
