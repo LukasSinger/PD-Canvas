@@ -12,7 +12,6 @@ body {
 #canvasView {
     display: flex;
     flex-grow: 1;
-    margin-top: env(safe-area-inset-top, 0px);
 }
 
 #bottomToolbar {
