@@ -3,6 +3,7 @@
 html, body {
     overflow: hidden;
     user-select: none;
+    touch-action: none;
 }
 
 body {
