@@ -10,8 +10,8 @@
   "start_url": "https://lukassinger.github.io/PaintDeluxe",
   "icons": [
     {
-        "src": "assets/logo.png",
-        "sizes": "1024x1024"
+        "src": "favicon.ico",
+        "sizes": "1024x1024 512x512 192x192"
     }
 ]
 }
