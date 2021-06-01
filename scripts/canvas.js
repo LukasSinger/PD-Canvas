@@ -24,8 +24,9 @@ function main(config) {
         .then(blob => {
             return new File(
                 [blob],
-                `Sketch from ${new Intl.DateTimeFormat('default', { hour: 'numeric', minute: 'numeric' }).format(date)} on ${new Intl.DateTimeFormat('default', { year: 'numeric', month: 'long', day: 'numeric' }).format(date)}`,
-                {type: blob.type});
+                `Sketch from ${new Intl.DateTimeFormat('default', { hour: 'numeric', minute: 'numeric' }).format(date)} on ${new Intl.DateTimeFormat('default', { year: 'numeric', month: 'long', day: 'numeric' }).format(date)}.png`,
+                {type: blob.type}
+            );
         })
         .then(file => {
             navigator.share({

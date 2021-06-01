@@ -45,7 +45,7 @@
         <script>
             setInterval(function() {
                 var appleThemeColor = document.querySelector("meta[name=apple-mobile-web-app-status-bar-style]");
-                if (typeof isDarkMode !== 'undefined' && isDarkMode) {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                     appleThemeColor.setAttribute("content", "light-content");
                 } else {
                     appleThemeColor.setAttribute("content", "dark-content");
