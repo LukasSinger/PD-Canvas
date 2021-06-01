@@ -1,6 +1,7 @@
 const bottomToolbar = document.getElementById('bottomToolbar');
 const saveButton = document.getElementById('saveButton')
 var points = [];
+var mouseDown = false;
 var prevMouseX;
 var prevMouseY;
 init();
@@ -23,13 +24,19 @@ function setup() {
     frameRate(1000);
     canvas.parent('canvas');
     windowResized();
+    canvas.mousePressed(function() {
+        mouseDown = true;
+    });
+    canvas.mouseReleased(function() {
+        mouseDown = false;
+    });
     prevMouseX = mouseX;
     prevMouseY = mouseY;
 };
 
 function draw() {
-    if (mouseIsPressed) {
-        if (prevMouseX) {
+    if (mouseDown && mouseIsPressed) {
+        if (prevMouseX != null) {
             line(prevMouseX, prevMouseY, mouseX, mouseY);
         } else {
             line(mouseX, mouseY, mouseX, mouseY);
