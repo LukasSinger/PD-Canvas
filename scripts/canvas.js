@@ -38,8 +38,6 @@ function draw() {
     if (mouseDown && mouseIsPressed) {
         if (prevMouseX != null) {
             line(prevMouseX, prevMouseY, mouseX, mouseY);
-        } else {
-            line(mouseX, mouseY, mouseX, mouseY);
         }
     } else {
         prevMouseX = null;
