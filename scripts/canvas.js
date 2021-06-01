@@ -29,7 +29,13 @@ function setup() {
 
 function draw() {
     if (mouseIsPressed) {
-        line(prevMouseX, prevMouseY, mouseX, mouseY);
+        if (prevMouseX) {
+            line(prevMouseX, prevMouseY, mouseX, mouseY);
+        } else {
+            line(mouseX, mouseY, mouseX, mouseY);
+        }
+    } else {
+        prevMouseX = null;
     }
     prevMouseX = mouseX;
     prevMouseY = mouseY;
