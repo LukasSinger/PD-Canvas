@@ -22,11 +22,13 @@ function main(config) {
         fetch(document.getElementById('defaultCanvas0').toDataURL())
         .then(res => res.blob())
         .then(blob => {
-            return new File([blob], 'image.png', {type: blob.type});
+            return new File(
+                [blob],
+                `Sketch from ${new Intl.DateTimeFormat('default', { hour: 'numeric', minute: 'numeric' }).format(date)} on ${new Intl.DateTimeFormat('default', { year: 'numeric', month: 'long', day: 'numeric' }).format(date)}`,
+                {type: blob.type});
         })
         .then(file => {
             navigator.share({
-                'title': `Sketch from ${new Intl.DateTimeFormat('default', { hour: 'numeric', minute: 'numeric' }).format(date)} on ${new Intl.DateTimeFormat('default', { year: 'numeric', month: 'long', day: 'numeric' }).format(date)}`,
                 'files': [ file ]
             });
         });
