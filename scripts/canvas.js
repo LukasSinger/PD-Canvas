@@ -24,10 +24,10 @@ function setup() {
     frameRate(1000);
     canvas.parent('canvas');
     windowResized();
-    canvas.touchStarted(function() {
+    canvas.mousePressed(function() {
         mouseDown = true;
     });
-    canvas.touchEnded(function() {
+    canvas.mouseReleased(function() {
         mouseDown = false;
     });
     prevMouseX = mouseX;
@@ -36,14 +36,16 @@ function setup() {
 
 function draw() {
     if (mouseDown && mouseIsPressed) {
-        if (prevMouseX != null) {
+        if (prevMouseX) {
             line(prevMouseX, prevMouseY, mouseX, mouseY);
+        } else {
+            line(mouseX, mouseY, mouseX, mouseY);
         }
+        prevMouseX = mouseX;
+        prevMouseY = mouseY;
     } else {
         prevMouseX = null;
-    }
-    prevMouseX = mouseX;
-    prevMouseY = mouseY;
+    } 
 };
 
 function heightCalc() {
