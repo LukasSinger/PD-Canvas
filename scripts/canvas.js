@@ -23,10 +23,12 @@ function setup() {
     frameRate(1000);
     canvas.parent('canvas');
     windowResized();
+    prevMouseX = mouseX;
+    prevMouseY = mouseY;
 };
 
 function draw() {
-    if (mouseIsPressed && prevMouseX) {
+    if (mouseIsPressed) {
         line(prevMouseX, prevMouseY, mouseX, mouseY);
     }
     prevMouseX = mouseX;
