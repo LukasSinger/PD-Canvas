@@ -30,6 +30,12 @@ function setup() {
     canvas.mouseReleased(function() {
         mouseDown = false;
     });
+    canvas.touchStarted(function() {
+        mouseDown = true;
+    });
+    canvas.touchEnded(function() {
+        mouseDown = false;
+    });
     prevMouseX = mouseX;
     prevMouseY = mouseY;
 };
