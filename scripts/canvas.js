@@ -24,10 +24,10 @@ function setup() {
     frameRate(1000);
     canvas.parent('canvas');
     windowResized();
-    canvas.mousePressed(function() {
+    canvas.touchStarted(function() {
         mouseDown = true;
     });
-    canvas.mouseReleased(function() {
+    canvas.touchEnded(function() {
         mouseDown = false;
     });
     prevMouseX = mouseX;
