@@ -1,3 +1,5 @@
+// This file is outside of the scripts folder because a Progressive Web App must have it in the root.
+
 self.addEventListener("install", function(event) {
     event.waitUntil(preLoad());
   });
@@ -6,7 +8,7 @@ self.addEventListener("install", function(event) {
     console.log("Installing web app");
     return caches.open("offline").then(function(cache) {
       console.log("caching index and important routes");
-      return cache.addAll(["/", "/components", "https://fonts.googleapis.com/css2?family=Sora:wght@500&display=swap"]);
+      return cache.addAll(["/", "/assets", "/scripts"]);
     });
   };
   
