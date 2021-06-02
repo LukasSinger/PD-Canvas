@@ -2,12 +2,17 @@ const bottomToolbar = document.getElementById('bottomToolbar');
 const loadButton = document.getElementById('loadButton');
 const upload = document.getElementById('upload');
 const saveButton = document.getElementById('saveButton');
-const strokeButton = document.getElementById('sizeButton')
+const strokeButton = document.getElementById('sizeButton');
+const colorButton = document.getElementById('colorButton');
+var colorPreview = document.getElementById('colorPreview');
+const colorPicker = document.getElementById('colorPicker');
+const toolButton = document.getElementById('toolButton');
 const toolIcon = document.getElementById('toolIcon');
 const tools = ["draw", "erase"];
 var saved = true;
 var tool = {"index": 0, "name": "draw"};
 var thickness = 1;
+var color = '#000';
 var mouseDown = false;
 var prevMouseX;
 var prevMouseY;
@@ -24,12 +29,24 @@ async function init() {
 function main(config) {
     setup();
 
+    colorPicker.addEventListener(
+        "change", function() {
+            color = this.value;
+            stroke(color);
+            colorPreview.setAttribute('style', `background-color: ${color}`);
+        }, false
+    );
+
+    colorButton.onclick = function() {
+        colorPicker.click();
+    };
+
     toolButton.onclick = function() {
         if (tool.index < tools.length - 1) {
             tool.index += 1
         } else {
             tool.index = 0;
-        }
+        };
         tool.name = tools[tool.index];
         toolIcon.src = `assets/tool-${tool.name}.svg`;
     };
