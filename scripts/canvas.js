@@ -31,7 +31,6 @@ function main(config) {
         .then(file => {
             canvasExport = {
                 'files': [ file ],
-                'title': 'test',
                 mimeType: 'image/png'
             }
             if (navigator.share(canvasExport)) {
