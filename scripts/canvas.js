@@ -12,6 +12,7 @@ var saved = true;
 var tool = {"index": 0, "name": "draw"};
 var thickness = 1;
 var selectedColor = '#000000';
+var canvasDimensions = {"x": 0, "y": 0};
 var mouseDown = false;
 var prevMouseX;
 var prevMouseY;
@@ -35,8 +36,8 @@ function main(config) {
         for (i=0; i<response.replace('#', '').length; i++) {
             if (validHex.includes(response.replace('#', '').charAt(i))) {
                 count += 1;
-            }
-        }
+            };
+        };
         if (response.length >= 3 && response.length <= 7 && count == response.replace('#', '').length) {
             if (response.charAt(0) != '#') {
                 response = `#${response}`
@@ -44,7 +45,7 @@ function main(config) {
             selectedColor = response;
             stroke(selectedColor);
             colorPreview.setAttribute('style', `background-color: ${selectedColor}`);
-        }
+        };
     };
 
     toolButton.onclick = function() {
@@ -62,7 +63,7 @@ function main(config) {
         if (!isNaN(response) && response >= 1) {
             thickness = response;
             strokeWeight(thickness);
-        }
+        };
     };
 
     upload.addEventListener(
@@ -157,8 +158,13 @@ function heightCalc() {
 };
 
 function windowResized() {
-    if (canvas.width != windowWidth || canvas.height != heightCalc())
-    resizeCanvas(windowWidth, heightCalc());
+    if (canvasDimensions.x != canvas.width || canvasDimensions.y != canvas.height) {
+        resizeCanvas(windowWidth, heightCalc())
+        .then(unused => {
+            canvasDimensions.x = canvas.width;
+            canvasDimensions.y = canvas.height;
+        });
+    };
 };
 
 function checkSave() {
