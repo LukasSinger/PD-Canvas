@@ -31,7 +31,8 @@ function main(config) {
             })
             .then(file => {
                 navigator.share({
-                    'files': [ file ]
+                    'files': [ file ],
+                    mimeType: 'image/png'
                 });
             });
         } catch(e) {
