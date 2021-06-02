@@ -26,7 +26,7 @@ function main(config) {
             if (canvasReplace && checkSave()) {
                 canvasReplace = URL.createObjectURL(canvasReplace);
                 loadImage(canvasReplace, img => {
-                    image(img, 0, 0);
+                    image(img, 0, 0, windowWidth, heightCalc());
                 });
             }
         }, false
@@ -44,7 +44,7 @@ function main(config) {
         .then(blob => {
             return new File(
                 [blob],
-                `Sketch from ${new Intl.DateTimeFormat('default', { hour: 'numeric', minute: 'numeric' }).format(date)} on ${new Intl.DateTimeFormat('default', { year: 'numeric', month: 'long', day: 'numeric' }).format(date)}.png`,
+                `Sketch from ${new Intl.DateTimeFormat('default', { hour: 'numeric', minute: 'numeric' }).format(date)} on ${new Intl.DateTimeFormat('default', { year: 'numeric', month: 'long', day: 'numeric' }).format(date)}.png`.replace(':', '꞉'),
                 {type: blob.type}
             );
         })
