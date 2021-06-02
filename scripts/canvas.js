@@ -22,7 +22,12 @@ async function init() {
     await fetch("./config.json")
     .then(response => response.json())
     .then(data => {
-        main(data);
+        let interval =  setInterval(function() {
+            if (createCanvas) {
+                clearInterval(interval);
+                main(data);
+            }
+        }, 100);
     });
 };
 
