@@ -4,6 +4,7 @@ html, body {
     overflow: hidden;
     user-select: none;
     -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     touch-action: none;
 }
@@ -36,7 +37,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 15%;
+    height: 75px;
     font-family: "Sora", sans-serif;
     font-weight: 500;
     font-size: 12px;
@@ -44,13 +47,30 @@ body {
     background-color: transparent;
 }
 
+.tapEffect {
+    position: absolute;
+    z-index: 1;
+    width: 10%;
+    height: 50px;
+    background-color: transparent;
+    transition: background-color 0.1s, width 0.1s, height 0.1s;
+}
+
+.bottomToolbarButton:active > .tapEffect {
+    width: 15%;
+    height: 75px;
+    background-color: hsl(220, 12%, 90%);
+}
+
 .icon {
+    z-index: 2;
     width: 25px;
     height: 25px;
     filter: brightness(0) saturate(100%) invert(15%) sepia(9%) saturate(1167%) hue-rotate(182deg) brightness(93%) contrast(85%);
 }
 
 .iconLabel {
+    z-index: 2;
     margin: 0;
     margin-top: 5px;
 }
