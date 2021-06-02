@@ -17,6 +17,7 @@ async function init() {
 function main(config) {
     setup();
     saveButton.onclick = function() {
+        alert("This may take a few seconds...")
         let date = new Date();
         let canvasExport;
         fetch(document.getElementById('defaultCanvas0').toDataURL())
