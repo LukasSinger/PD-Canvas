@@ -2,8 +2,10 @@ const bottomToolbar = document.getElementById('bottomToolbar');
 const loadButton = document.getElementById('loadButton');
 const upload = document.getElementById('upload');
 const saveButton = document.getElementById('saveButton');
+const toolIcon = document.getElementById('toolIcon');
+const tools = ["draw", "erase"];
 var saved = true;
-var points = [];
+var tool = {"index": 0, "name": "draw"};
 var mouseDown = false;
 var prevMouseX;
 var prevMouseY;
@@ -15,10 +17,20 @@ async function init() {
     .then(data => {
         main(data);
     });
-}
+};
 
 function main(config) {
     setup();
+
+    toolButton.onclick = function() {
+        if (tool.index < tools.length - 1) {
+            tool.index += 1
+        } else {
+            tool.index = 0;
+        }
+        tool.name = tools[tool.index];
+        toolIcon.src = `assets/tool-${tool.name}.svg`;
+    };
 
     upload.addEventListener(
         "change", function() {
@@ -88,22 +100,27 @@ function setup() {
 
 function draw() {
     if (mouseDown && mouseIsPressed) {
+        if (tool.name == 'draw') {
+            noErase();
+        } else if (tool.name == 'erase') {
+            erase();
+        }
         if (prevMouseX) {
             line(prevMouseX, prevMouseY, mouseX, mouseY);
         } else {
             line(mouseX, mouseY, mouseX, mouseY);
-        }
+        };
         prevMouseX = mouseX;
         prevMouseY = mouseY;
         saved = false;
     } else {
         prevMouseX = null;
-    } 
+    };
 };
 
 function heightCalc() {
     return window.innerHeight - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('height')) - parseInt(window.getComputedStyle(bottomToolbar).getPropertyValue('--bottom-inset'));
-}
+};
 
 function windowResized() {
     resizeCanvas(windowWidth, heightCalc());
@@ -114,5 +131,5 @@ function checkSave() {
         return true;
     } else {
         return confirm("You have unsaved changes on your sketch. Continue anyway?");
-    }
-}
+    };
+};
