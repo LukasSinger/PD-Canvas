@@ -29,14 +29,18 @@ function main(config) {
             );
         })
         .then(file => {
-            navigator.share({
+            canvasExport = {
                 'files': [ file ],
                 'title': 'test',
                 mimeType: 'image/png'
-            });
+            }
+            if (navigator.share(canvasExport)) {
+                navigator.share();
+            } else {
+                saveCanvas();
+            }
         })
-        // If share fails for some reason, regular download prompt will appear
-        .catch(err => canvas.saveCanvas())
+        // If share fails for some reason, this prompt will appear
         .catch(err => alert(`Your device doesn't appear to support saving this image. Please take a screenshot instead.`));
     };
 };
