@@ -17,7 +17,6 @@ async function init() {
 function main(config) {
     setup();
     saveButton.onclick = function() {
-        alert("This may take a few seconds...")
         let date = new Date();
         let canvasExport;
         fetch(document.getElementById('defaultCanvas0').toDataURL())
@@ -36,7 +35,8 @@ function main(config) {
             });
         })
         // If share fails for some reason, regular download prompt will appear
-        .catch(err => saveCanvas());
+        .catch(err => saveCanvas())
+        .catch(err => alert(`Your device doesn't appear to support saving this image. Please take a screenshot instead.`));
     };
 };
 
