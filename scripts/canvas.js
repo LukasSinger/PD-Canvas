@@ -149,6 +149,7 @@ function draw() {
     } else {
         prevMouseX = null;
     };
+    windowResized();
 };
 
 function heightCalc() {
@@ -156,6 +157,7 @@ function heightCalc() {
 };
 
 function windowResized() {
+    if (canvas.width != windowWidth || canvas.height != heightCalc())
     resizeCanvas(windowWidth, heightCalc());
 };
 
