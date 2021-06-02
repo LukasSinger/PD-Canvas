@@ -51,15 +51,15 @@ body {
     position: absolute;
     z-index: 1;
     width: 10%;
-    height: 50px;
+    height: 75px;
     background-color: transparent;
-    transition: background-color 0.1s, width 0.1s, height 0.1s;
+    transition: background-color 0.05s, width 0.1s;
+    transition-timing-function: ease-in-out;
 }
 
 .bottomToolbarButton:active > .tapEffect {
     width: 15%;
-    height: 75px;
-    background-color: hsl(220, 12%, 90%);
+    background-color: hsl(220, 12%, 92%);
 }
 
 .icon {
