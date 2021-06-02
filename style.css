@@ -53,7 +53,7 @@ body {
     width: 10%;
     height: 75px;
     background-color: transparent;
-    transition: background-color 0.05s, width 0.1s;
+    transition: background-color 0.1s, width 0.1s;
     transition-timing-function: ease-in-out;
 }
 
@@ -80,6 +80,7 @@ input {
 }
 
 #colorPreview {
+    z-index: 2;
     width: 21px;
     height: 21px;
     border: 2px solid #2d3139;
