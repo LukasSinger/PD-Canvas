@@ -158,10 +158,10 @@ function heightCalc() {
 };
 
 function windowResized() {
-    if (canvasDimensions.x != canvas.width || canvasDimensions.y != canvas.height) {
+    if (canvasDimensions.x != windowWidth - canvas.width || canvasDimensions.y != heightCalc() - canvas.height) {
         resizeCanvas(windowWidth, heightCalc())
-        canvasDimensions.x = canvas.width;
-        canvasDimensions.y = canvas.height;
+        canvasDimensions.x = windowWidth - canvas.width;
+        canvasDimensions.y = heightCalc() - canvas.height;
     };
 };
 
