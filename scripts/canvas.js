@@ -5,14 +5,13 @@ const saveButton = document.getElementById('saveButton');
 const strokeButton = document.getElementById('sizeButton');
 const colorButton = document.getElementById('colorButton');
 var colorPreview = document.getElementById('colorPreview');
-const colorPicker = document.getElementById('colorPicker');
 const toolButton = document.getElementById('toolButton');
 const toolIcon = document.getElementById('toolIcon');
 const tools = ["draw", "erase"];
 var saved = true;
 var tool = {"index": 0, "name": "draw"};
 var thickness = 1;
-var color = '#000';
+var selectedColor = '#000000';
 var mouseDown = false;
 var prevMouseX;
 var prevMouseY;
@@ -29,16 +28,23 @@ async function init() {
 function main(config) {
     setup();
 
-    colorPicker.addEventListener(
-        "input", function() {
-            color = this.value;
-            stroke(color);
-            colorPreview.setAttribute('style', `background-color: ${color}`);
-        }, false
-    );
-
     colorButton.onclick = function() {
-        colorPicker.click();
+        let response = prompt('Enter a hex (#) color.', selectedColor);
+        let validHex = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        let count = 0;
+        for (i=0; i<response.replace('#', '').length; i++) {
+            if (validHex.includes(response.replace('#', '').charAt(i))) {
+                count += 1;
+            }
+        }
+        if (response.length >= 3 && response.length <= 7 && count == response.replace('#', '').length) {
+            if (response.charAt(0) != '#') {
+                response = `#${response}`
+            }
+            selectedColor = response;
+            stroke(selectedColor);
+            colorPreview.setAttribute('style', `background-color: ${selectedColor}`);
+        }
     };
 
     toolButton.onclick = function() {

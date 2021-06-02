@@ -55,15 +55,8 @@ body {
     margin-top: 5px;
 }
 
-#upload {
+input {
     display: none;
-}
-
-#colorPicker {
-    position: absolute;
-    visibility: visible;
-    width: 1px;
-    height: 1px;
 }
 
 #colorPreview {
