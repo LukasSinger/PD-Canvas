@@ -160,10 +160,8 @@ function heightCalc() {
 function windowResized() {
     if (canvasDimensions.x != canvas.width || canvasDimensions.y != canvas.height) {
         resizeCanvas(windowWidth, heightCalc())
-        .then(unused => {
-            canvasDimensions.x = canvas.width;
-            canvasDimensions.y = canvas.height;
-        });
+        canvasDimensions.x = canvas.width;
+        canvasDimensions.y = canvas.height;
     };
 };
 
