@@ -61,7 +61,7 @@ body {
 
 #colorPicker {
     position: absolute;
-    visibility: hidden;
+    visibility: visible;
     width: 1px;
     height: 1px;
 }

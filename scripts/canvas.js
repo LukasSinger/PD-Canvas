@@ -30,7 +30,7 @@ function main(config) {
     setup();
 
     colorPicker.addEventListener(
-        "change", function() {
+        "input", function() {
             color = this.value;
             stroke(color);
             colorPreview.setAttribute('style', `background-color: ${color}`);
