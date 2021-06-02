@@ -1,5 +1,8 @@
 const bottomToolbar = document.getElementById('bottomToolbar');
-const saveButton = document.getElementById('saveButton')
+const loadButton = document.getElementById('loadButton');
+const upload = document.getElementById('upload');
+const saveButton = document.getElementById('saveButton');
+var saved = true;
 var points = [];
 var mouseDown = false;
 var prevMouseX;
@@ -16,6 +19,23 @@ async function init() {
 
 function main(config) {
     setup();
+
+    upload.addEventListener(
+        "change", function() {
+            let canvasReplace = this.files[0];
+            if (canvasReplace && checkSave()) {
+                canvasReplace = URL.createObjectURL(canvasReplace);
+                loadImage(canvasReplace, img => {
+                    image(img, 0, 0);
+                });
+            }
+        }, false
+    );
+
+    loadButton.onclick = async function() {
+        upload.click();
+    };
+
     saveButton.onclick = function() {
         let date = new Date();
         let canvasExport;
@@ -38,6 +58,7 @@ function main(config) {
             } else {
                 saveCanvas();
             }
+            saved = true;
         })
         // If share fails for some reason, this prompt will appear
         .catch(err => alert(`Your device doesn't appear to support saving this image. Please take a screenshot instead.`));
@@ -74,6 +95,7 @@ function draw() {
         }
         prevMouseX = mouseX;
         prevMouseY = mouseY;
+        saved = false;
     } else {
         prevMouseX = null;
     } 
@@ -87,7 +109,10 @@ function windowResized() {
     resizeCanvas(windowWidth, heightCalc());
 };
 
-function resizeCanvasToPage() {
-    canvasElement.width = window.innerWidth;
-    canvasElement.height = heightCalc;
-};
+function checkSave() {
+    if (saved) {
+        return true;
+    } else {
+        return confirm("You have unsaved changes on your sketch. Continue anyway?");
+    }
+}
