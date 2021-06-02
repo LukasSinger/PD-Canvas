@@ -31,11 +31,12 @@ function main(config) {
         .then(file => {
             navigator.share({
                 'files': [ file ],
+                'title': 'test',
                 mimeType: 'image/png'
             });
         })
         // If share fails for some reason, regular download prompt will appear
-        .catch(err => saveCanvas())
+        .catch(err => canvas.saveCanvas())
         .catch(err => alert(`Your device doesn't appear to support saving this image. Please take a screenshot instead.`));
     };
 };
