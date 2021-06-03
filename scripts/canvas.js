@@ -224,7 +224,7 @@ function updateUI() {
         element('colorButton').setAttribute('style', 'visibility: hidden;')
     };
     if (element('sizeLabel').innerHTML.toString().length >= 3) {
-        element('sizeLabel').setAttribute('style', `${this.getAttribute('style')} font-size: 8px;`);
+        element('sizeLabel').setAttribute('style', `${this.getAttribute('style')} font-size: 6px;`);
     } else {
         element('sizeLabel').setAttribute('style', `${this.getAttribute('style')} font-size: 10px;`);
     };
