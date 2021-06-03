@@ -51,6 +51,8 @@ function main(config) {
             selectedColor = response;
             stroke(selectedColor);
             colorPreview.setAttribute('style', `background-color: ${selectedColor}`);
+        } else {
+            alert(`Oops! That color wasn't in hexadecimal format.`);
         };
         colorButton.dispatchEvent('onpointerup');
     };
@@ -87,7 +89,7 @@ function main(config) {
             strokeWeight(response);
         } else if (isNaN(response)) {
             alert(`Oops! The size must be a number.`);
-        } else {
+        } else if (response != null) {
             alert(`Oops! The size must be greater than 0.`);
         };
         strokeButton.dispatchEvent('onpointerup');
