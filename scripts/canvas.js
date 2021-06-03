@@ -51,6 +51,7 @@ function main(config) {
             stroke(selectedColor);
             colorPreview.setAttribute('style', `background-color: ${selectedColor}`);
         };
+        colorButton.dispatchEvent('onpointerup');
     };
 
     toolButton.onclick = function() {
@@ -61,6 +62,7 @@ function main(config) {
         };
         tool.name = tools[tool.index];
         toolIcon.src = `assets/tool-${tool.name}.svg`;
+        toolButton.dispatchEvent('onpointerup');
     };
 
     strokeButton.onclick = function() {
@@ -69,6 +71,7 @@ function main(config) {
             thickness = response;
             strokeWeight(thickness);
         };
+        strokeButton.dispatchEvent('onpointerup');
     };
 
     upload.addEventListener(
@@ -80,6 +83,7 @@ function main(config) {
                     image(img, 0, 0, windowWidth, heightCalc());
                 });
             }
+            loadButton.dispatchEvent('onpointerup');
         }, false
     );
 
@@ -113,6 +117,7 @@ function main(config) {
         })
         // If share fails for some reason, this prompt will appear
         .catch(err => alert(`Your device doesn't appear to support saving this image. Please take a screenshot instead.`));
+        saveButton.dispatchEvent('onpointerup');
     };
 };
 
