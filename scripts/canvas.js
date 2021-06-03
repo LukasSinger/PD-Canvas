@@ -10,7 +10,8 @@ const toolIcon = document.getElementById('toolIcon');
 const tools = ["draw", "erase"];
 var saved = true;
 var tool = {"index": 0, "name": "draw"};
-var thickness = 1;
+var drawThickness = 1;
+var eraseThickness = 30;
 var selectedColor = '#000000';
 var canvasDimensions = {"x": 0, "y": 0};
 var mouseDown = false;
@@ -56,20 +57,38 @@ function main(config) {
 
     toolButton.onclick = function() {
         if (tool.index < tools.length - 1) {
-            tool.index += 1
+            tool.index += 1;
         } else {
             tool.index = 0;
         };
         tool.name = tools[tool.index];
         toolIcon.src = `assets/tool-${tool.name}.svg`;
+        if (tool.name == 'draw') {
+            strokeWeight(drawThickness);
+        } else if (tool.name == 'erase') {
+            strokeWeight(eraseThickness);
+        };
         toolButton.dispatchEvent('onpointerup');
     };
 
     strokeButton.onclick = function() {
-        let response = prompt('Enter a numeric brush size.', thickness);
-        if (!isNaN(response) && response >= 1) {
-            thickness = response;
-            strokeWeight(thickness);
+        let response;
+        if (tool.name == 'draw') {
+            response = prompt('Enter a numeric brush size.', drawThickness);
+        } else if (tool.name == 'erase') {
+            response = prompt('Enter a numeric eraser size.', eraseThickness);
+        };
+        if (!isNaN(response) && response > 0) {
+            if (tool.name == 'draw') {
+                drawThickness = response;
+            } else if (tool.name == 'erase') {
+                eraseThickness = response;
+            };
+            strokeWeight(response);
+        } else if (isNaN(response)) {
+            alert(`Oops! The size must be a number.`);
+        } else {
+            alert(`Oops! The size must be greater than 0.`);
         };
         strokeButton.dispatchEvent('onpointerup');
     };
