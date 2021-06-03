@@ -31,25 +31,14 @@ function main(config) {
     setup();
 
     element('colorButton').onclick = function() {
-        let response = prompt('Enter a hex (#) color.', selectedColor);
-        let validHex = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-        let count = 0;
-        for (i=0; i<response.replace('#', '').length; i++) {
-            if (validHex.includes(response.replace('#', '').charAt(i))) {
-                count += 1;
-            };
-        };
-        if (response.length >= 3 && response.length <= 7 && count == response.replace('#', '').length) {
-            if (response.charAt(0) != '#') {
-                response = `#${response}`
-            }
+        let colorPicker = new JSColor('#colorButton', { 'onInput': function() {
+            let response = this.toHEXAString();
             selectedColor = response;
             stroke(selectedColor);
             element('colorPreview').setAttribute('style', `background-color: ${selectedColor}`);
-        } else {
-            alert(`Oops! That color wasn't in hexadecimal format.`);
-        };
-        element('colorButton').dispatchEvent('onpointerup');
+            element('colorButton').dispatchEvent('onpointerup');
+        } });
+        colorPicker.show();
     };
 
     element('toolButton').onclick = function() {
@@ -59,7 +48,6 @@ function main(config) {
             tool.index = 0;
         };
         tool.name = tools[tool.index];
-        element('toolIcon').src = `assets/tool-${tool.name}.svg`;
         if (tool.name == 'draw') {
             strokeWeight(drawThickness);
         } else if (tool.name == 'erase') {
@@ -206,6 +194,7 @@ function checkSave() {
 };
 
 function updateUI() {
+    element('toolIcon').src = `assets/tool-${tool.name}.svg`;
     if (tool.name == 'draw') {
         element('toolLabel').innerHTML = 'Pen';
         element('sizeLabel').innerHTML = drawThickness;

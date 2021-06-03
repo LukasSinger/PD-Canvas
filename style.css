@@ -76,7 +76,7 @@ body {
 }
 
 input {
-    display: none;
+    display: none !important;
 }
 
 #sizePreview, #colorPreview {
