@@ -31,23 +31,15 @@ function main(config) {
     setup();
 
     element('colorButton').onclick = function() {
-        let response = prompt('Enter a hex (#) color.', selectedColor);
-        let validHex = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-        let count = 0;
-        for (i=0; i<response.replace('#', '').length; i++) {
-            if (validHex.includes(response.replace('#', '').charAt(i))) {
-                count += 1;
-            };
-        };
-        if (response.length >= 3 && response.length <= 7 && count == response.replace('#', '').length) {
-            if (response.charAt(0) != '#') {
-                response = `#${response}`
-            }
+        let response = prompt(`Enter a color. You can enter color names like red and blue, or you can enter hex colors.`);
+        let s = new Option().style;
+        s.color = response;
+        if (s.color == response.toLowerCase()) {
             selectedColor = response;
             stroke(selectedColor);
             element('colorPreview').setAttribute('style', `background-color: ${selectedColor}`);
         } else {
-            alert(`Oops! That color wasn't in hexadecimal format.`);
+            alert(`Oops! We couldn't recognize that color. Try typing it in differently.`);
         };
         element('colorButton').dispatchEvent('onpointerup');
     };
