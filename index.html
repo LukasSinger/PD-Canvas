@@ -2,7 +2,9 @@
 <html>
     <head>
         <title>Paint Deluxe</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="styles/general.css">
+        <link rel="stylesheet" href="styles/home.css">
+        <link rel="stylesheet" href="styles/editor.css">
         <link rel="shortcut icon" type="favicon" href="favicon.ico"/>
         <link rel="apple-touch-icon" sizes="180x180" href="assets/logo-1024x1024.png">
         <link rel="manifest" href="manifest.json">
@@ -23,48 +25,43 @@
         <link href="assets/splashscreens/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
     </head>
     <body id="body" ontouchstart=''>
-        <div id="canvas" width="100%" height="100%"></div>
-        <div id="bottomToolbar">
-            <div id="loadButton" class="bottomToolbarButton">
-                <div class="tapEffect"></div>
-                <img class="icon" src="assets/load.svg" />
-                <p class="iconLabel">Load</p>
-                <input id="upload" type="file">
-            </div>
-            <div id="saveButton" class="bottomToolbarButton">
-                <div class="tapEffect"></div>
-                <img class="icon" src="assets/save.svg" />
-                <p class="iconLabel">Save</p>
-            </div>
-            <div id="toolButton" class="bottomToolbarButton">
-                <div class="tapEffect"></div>
-                <img id="toolIcon" class="icon" src="assets/tool-draw.svg" />
-                <p class="iconLabel">Tool</p>
-            </div>
-            <div id="sizeButton" class="bottomToolbarButton">
-                <div class="tapEffect"></div>
-                <img class="icon" src="assets/size.svg" />
-                <p class="iconLabel">Size</p>
-            </div>
-            <div id="colorButton" class="bottomToolbarButton">
-                <div class="tapEffect"></div>
-                <div id="colorPreview"></div>
-                <p class="iconLabel">Color</p>
-            </div>
+        <div id="home">
+            
         </div>
+        <div id="editor">
+            <div id="canvas" width="100%" height="100%"></div>
+            <div id="bottomToolbar">
+                <div id="loadButton" class="bottomToolbarButton">
+                    <div class="tapEffect"></div>
+                    <img class="icon" src="assets/load.svg" />
+                    <p class="iconLabel">Load</p>
+                    <input id="upload" type="file">
+                </div>
+                <div id="saveButton" class="bottomToolbarButton">
+                    <div class="tapEffect"></div>
+                    <img class="icon" src="assets/save.svg" />
+                    <p class="iconLabel">Save</p>
+                </div>
+                <div id="toolButton" class="bottomToolbarButton">
+                    <div class="tapEffect"></div>
+                    <img id="toolIcon" class="icon" src="assets/tool-draw.svg" />
+                    <p class="iconLabel">Tool</p>
+                </div>
+                <div id="sizeButton" class="bottomToolbarButton">
+                    <div class="tapEffect"></div>
+                    <img class="icon" src="assets/size.svg" />
+                    <p class="iconLabel">Size</p>
+                </div>
+                <div id="colorButton" class="bottomToolbarButton">
+                    <div class="tapEffect"></div>
+                    <div id="colorPreview"></div>
+                    <p class="iconLabel">Color</p>
+                </div>
+            </div>
 
-        <script src="scripts/p5.min.js"></script>
-        <script src="scripts/canvas.js"></script>
-        <script>
-            setInterval(function() {
-                var appleThemeColor = document.querySelector("meta[name=apple-mobile-web-app-status-bar-style]");
-                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    appleThemeColor.setAttribute("content", "light-content");
-                } else {
-                    appleThemeColor.setAttribute("content", "dark-content");
-                };
-            }, 100)
-        </script>
+            <script src="scripts/p5.min.js"></script>
+            <script src="scripts/canvas.js"></script>
+        </div>
         <script>
             if (!navigator.serviceWorker.controller) {
                 navigator.serviceWorker.register("sw.js").then(function(reg) {
