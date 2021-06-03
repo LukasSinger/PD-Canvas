@@ -34,7 +34,7 @@ async function init() {
 function main(config) {
     setup();
 
-    colorButton.onpointerdown = function() {
+    colorButton.onclick = function() {
         let response = prompt('Enter a hex (#) color.', selectedColor);
         let validHex = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
         let count = 0;
@@ -53,7 +53,7 @@ function main(config) {
         };
     };
 
-    toolButton.onpointerdown = function() {
+    toolButton.onclick = function() {
         if (tool.index < tools.length - 1) {
             tool.index += 1
         } else {
@@ -63,7 +63,7 @@ function main(config) {
         toolIcon.src = `assets/tool-${tool.name}.svg`;
     };
 
-    strokeButton.onpointerdown = function() {
+    strokeButton.onclick = function() {
         let response = prompt('Enter a numeric brush size.', thickness);
         if (!isNaN(response) && response >= 1) {
             thickness = response;
@@ -83,11 +83,11 @@ function main(config) {
         }, false
     );
 
-    loadButton.onpointerdown = async function() {
+    loadButton.onclick = async function() {
         upload.click();
     };
 
-    saveButton.onpointerdown = function() {
+    saveButton.onclick = function() {
         let date = new Date();
         let canvasExport;
         fetch(document.getElementById('defaultCanvas0').toDataURL())
