@@ -65,27 +65,33 @@ function main(config) {
         } else if (tool.name == 'erase') {
             strokeWeight(eraseThickness);
         };
+        updateUI();
         element('toolButton').dispatchEvent('onpointerup');
     };
 
     element('sizeButton').onclick = function() {
         let response;
         if (tool.name == 'draw') {
-            response = prompt('Enter a numeric brush size.', drawThickness);
+            response = prompt('Enter a numeric PEN size.', drawThickness);
         } else if (tool.name == 'erase') {
-            response = prompt('Enter a numeric eraser size.', eraseThickness);
+            response = prompt('Enter a numeric ERASER size.', eraseThickness);
         };
-        if (!isNaN(response) && response > 0) {
+        if (!isNaN(response) && response > 0 && response < 1000) {
             if (tool.name == 'draw') {
                 drawThickness = response;
             } else if (tool.name == 'erase') {
                 eraseThickness = response;
             };
             strokeWeight(response);
+            updateUI();
         } else if (isNaN(response)) {
-            alert(`Oops! The size must be a number.`);
+            alert(`That's not a number! The size must be between 0 and 1000.`);
         } else if (response != null) {
-            alert(`Oops! The size must be greater than 0.`);
+            if (response <= 0) {
+                alert(`That's too small! The size must be bigger than 0.`);
+            } else {
+                alert(`That's too big! The size must be smaller than 1000.`);
+            };
         };
         element('sizeButton').dispatchEvent('onpointerup');
     };
@@ -196,5 +202,26 @@ function checkSave() {
         return true;
     } else {
         return confirm("You have unsaved changes on your sketch. Continue anyway?");
+    };
+};
+
+function updateUI() {
+    if (tool.name == 'draw') {
+        element('toolLabel').innerHTML = 'Pen';
+        element('sizeLabel').innerHTML = drawThickness;
+        element('sizeLabel').setAttribute('style', 'color: #2d3139;');
+        element('sizePreview').setAttribute('style', 'border-color: #2d3139;');
+        element('colorButton').setAttribute('style', 'visibility: default;')
+    } else if (tool.name == 'erase') {
+        element('toolLabel').innerHTML = 'Eraser';
+        element('sizeLabel').innerHTML = eraseThickness;
+        element('sizeLabel').setAttribute('style', 'color: #eb374f;');
+        element('sizePreview').setAttribute('style', 'border-color: #eb374f;');
+        element('colorButton').setAttribute('style', 'visibility: hidden;')
+    };
+    if (element('sizeLabel').innerHTML.toString().length >= 3) {
+        element('sizeLabel').setAttribute('style', `${this.getAttribute('style')} font-size: 10px;`);
+    } else {
+        element('sizeLabel').setAttribute('style', `${this.getAttribute('style')} font-size: 12px;`);
     };
 };
